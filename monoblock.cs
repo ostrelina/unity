@@ -3,14 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class monoblock : MonoBehaviour {
-	public float speed;
-	// Use this for initialization
-	void Start () {
-		speed=Random.Range(0.4f,2);
+	Transform tr;
+  
+    // Use this for initialization
+    void Start () {
+		tr = GetComponent<Transform> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.Translate (speed * Time.deltaTime,0 , 0);
+		
 	}
+	void OnMouseDown(){
+		Debug.Log ("ok");
+		tr.position= new Vector3 (tr.position.x,9f,tr.position.z);
+
+	}
+    void OnCollisionEnter(Collision coll)
+    {
+        coll.gameObject.transform.parent = tr;
+    }
+   
 }
+
+
